@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>WaterWorkFix</AssemblyName>
+    <AssemblyTitle>WaterWorkFix</AssemblyTitle>
+    <AssemblyDescription>Companion fix for WaterWork mod — vein drain, block suppression, pipe gating, ice melt</AssemblyDescription>
+    <AssemblyCompany>ModPeraspera</AssemblyCompany>
+    <AssemblyProduct>WaterWorkFix</AssemblyProduct>
+    <RootNamespace>PerAspera.WaterWorkFix</RootNamespace>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.752" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="2.1.0" />
+  </ItemGroup>
+
+  <!-- SDK (Private=false: SDK lives in its own plugin folder, not copied here) -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\SDK\PerAspera.Core\PerAspera.Core.csproj">
+      <Private>false</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SDK\PerAspera.Core.IL2CppExtensions\PerAspera.Core.IL2CppExtensions.csproj">
+      <Private>false</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SDK\PerAspera.GameAPI.Wrappers\PerAspera.GameAPI.Wrappers.csproj">
+      <Private>false</Private>
+    </ProjectReference>
+  </ItemGroup>
+
+  <!-- Game DLLs come automatically from Directory.Build.targets (BepInEx/interop) -->
+
+</Project>
