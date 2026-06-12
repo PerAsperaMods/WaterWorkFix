@@ -3,32 +3,32 @@
   <PropertyGroup>
     <AssemblyName>WaterWorkFix</AssemblyName>
     <AssemblyTitle>WaterWorkFix</AssemblyTitle>
-    <AssemblyDescription>Companion fix for WaterWork mod — vein drain, block suppression, pipe gating, ice melt</AssemblyDescription>
-    <AssemblyCompany>ModPeraspera</AssemblyCompany>
+    <AssemblyDescription>Companion fix for WaterWork mod - vein drain, block suppression, pipe gating, ice melt</AssemblyDescription>
+    <AssemblyCompany>PerAsperaMods</AssemblyCompany>
     <AssemblyProduct>WaterWorkFix</AssemblyProduct>
     <RootNamespace>PerAspera.WaterWorkFix</RootNamespace>
-    <AssemblyVersion>1.0.0</AssemblyVersion>
-    <FileVersion>1.0.0</FileVersion>
+    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <FileVersion>1.0.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.752" />
+    <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" />
     <PackageReference Include="BepInEx.PluginInfoProps" Version="2.1.0" />
   </ItemGroup>
 
-  <!-- SDK (Private=false: SDK lives in its own plugin folder, not copied here) -->
-  <ItemGroup>
+  <!-- Workspace local : SDK en ProjectReference (Private=false : le SDK vit dans son
+       propre dossier plugin). En CI (GITHUB_ACTIONS=true), les references SDK + interop
+       jeu sont injectees par le Directory.Build.props genere par le workflow
+       reutilisable release-mod.yml (voir mod-registry/CONVENTIONS.md). -->
+  <ItemGroup Condition="'$(GITHUB_ACTIONS)' != 'true'">
     <ProjectReference Include="..\..\SDK\PerAspera.Core\PerAspera.Core.csproj">
       <Private>false</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\SDK\PerAspera.Core.IL2CppExtensions\PerAspera.Core.IL2CppExtensions.csproj">
-      <Private>false</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\SDK\PerAspera.GameAPI.Wrappers\PerAspera.GameAPI.Wrappers.csproj">
+    <ProjectReference Include="..\..\SDK\PerAspera.GameAPI\PerAspera.GameAPI.csproj">
       <Private>false</Private>
     </ProjectReference>
   </ItemGroup>
 
-  <!-- Game DLLs come automatically from Directory.Build.targets (BepInEx/interop) -->
+  <!-- Game DLLs : Directory.Build.targets du workspace en local, props genere en CI -->
 
 </Project>
